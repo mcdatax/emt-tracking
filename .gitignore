@@ -1,1 +1,32 @@
 .DS_Store
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.env
+
+# Java
+target/
+*.class
+*.jar
+
+# Node / Angular
+node_modules/
+dist/
+
+# Flutter
+.dart_tool/
+build/
+
+# IDEs
+.idea/
+.vscode/settings.json
+*.iml
+
+# Docker
+.docker/
+EOF
