@@ -1,0 +1,14 @@
+[project]
+name = "emt-tracking"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = []
+
+[tool.uv.workspace]
+members = [
+    "services/emt-gateway",
+    "services/emt-prediction",
+    "data-engineering/ingestion",
+    "data-engineering/pipelines",
+    "data-engineering/ml-models",
+]
