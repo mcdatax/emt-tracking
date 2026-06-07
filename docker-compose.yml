@@ -1,0 +1,39 @@
+services:
+  kafka:
+    image: apache/kafka:4.0.0
+    container_name: emt-kafka
+    ports:
+      - "9092:9092"
+    networks:
+      - emt-network
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093,PLAINTEXT_INTERNAL://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+
+  akhq:
+    image: tchiotludo/akhq:latest
+    container_name: emt-akhq
+    ports:
+      - "8080:8080"
+    networks:
+      - emt-network
+    environment:
+      AKHQ_CONFIGURATION: |
+        akhq:
+          connections:
+            emt-local:
+              properties:
+                bootstrap.servers: "kafka:29092"
+    depends_on:
+      - kafka
+
+networks:
+  emt-network:
+    driver: bridge
