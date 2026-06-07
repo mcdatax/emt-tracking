@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     debug: bool = False
 
     # EMT Madrid API
-    emt_base_url: str = "https://openapi-emtmadrid.es"
+    emt_base_url: str = "https://openapi.emtmadrid.es"
     emt_email: str = ""
     emt_password: str = ""
 

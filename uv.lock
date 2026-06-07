@@ -75,7 +75,7 @@ wheels = [
 [[package]]
 name = "emt-gateway"
 version = "0.1.0"
-source = { virtual = "services/emt-gateway" }
+source = { editable = "services/emt-gateway" }
 dependencies = [
     { name = "fastapi" },
     { name = "httpx" },
