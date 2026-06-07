@@ -4,6 +4,7 @@ class Settings(BaseSettings):
     app_name: str = "EMT Gateway"
     app_version: str = "0.1.0"
     debug: bool = False
+    kafka_bootstrap_servers: str = "localhost:9092"
 
     # EMT Madrid API
     emt_base_url: str = "https://openapi.emtmadrid.es"
