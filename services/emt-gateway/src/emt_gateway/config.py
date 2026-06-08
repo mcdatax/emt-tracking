@@ -10,6 +10,16 @@ class Settings(BaseSettings):
     emt_base_url: str = "https://openapi.emtmadrid.es"
     emt_email: str = ""
     emt_password: str = ""
+    
+    # Polling
+    polling_interval_seconds: int = 30
+    stops_to_monitor: list[str] = [
+        "314",
+        "696",
+        "1464",
+        "722",
+        "818",
+    ]
 
     class Config:
         env_file = ".env"
