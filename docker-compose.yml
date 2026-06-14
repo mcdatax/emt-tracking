@@ -34,6 +34,33 @@ services:
     depends_on:
       - kafka
 
+  postgres:
+    image: postgres:17-alpine
+    container_name: emt-postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - emt-network
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer:latest
+    container_name: emt-adminer
+    ports:
+      - "8081:8080"
+    networks:
+      - emt-network
+    depends_on:
+      - postgres
+
 networks:
   emt-network:
     driver: bridge
+
+volumes:
+  postgres_data:
